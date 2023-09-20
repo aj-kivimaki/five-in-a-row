@@ -1,3 +1,5 @@
+-
+
 # Five in a Row
 
 A basic Five in a Row game, which needs some additions to work.

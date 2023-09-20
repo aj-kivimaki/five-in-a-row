@@ -43,6 +43,46 @@ function expandBoard(direction) {
     // This function adds a column or a row to the board
     // depending on the direction it gets as an argument.
 
+    if (direction === 'LEFT') {
+        for (let i = 0; i < dimX; i++) {
+            board[i].unshift('');
+        }
+        dimX++;
+    }
+
+    if (direction === 'RIGHT') {
+        for (let i = 0; i < dimX; i++) {
+            board[i].push('');
+        }
+        dimX++;
+    }
+
+    if (direction === 'UP') {
+        const row = [];
+        board.unshift(row);
+        for (let i = 0; i < dimY; i++) {
+            row.push('');
+        }
+        dimY++;
+        // add the upper corner if corner cell is selected
+        if (dimX === dimY) {
+            row.push('');
+        }
+    }
+
+    if (direction === 'DOWN') {
+        const row = [];
+        board.push(row);
+        for (let i = 0; i < dimY; i++) {
+            row.push('');
+        }
+        dimY++;
+        // add the lower corner if corner cell is selected
+        if (dimX === dimY) {
+            row.push('');
+        }
+    }
+    console.log(board);
     drawBoard();
 }
 
@@ -88,8 +128,15 @@ function createSquare(boardDiv, x, y) {
         element.addEventListener('click', handleClick);
     }
 
+    // make the grid (board on the page) grow as the arrays do
+    const boardDisplay = document.querySelector('#board');
+    boardDisplay.style.gridTemplateColumns = `repeat(${dimX}, 1fr)`;
+    boardDisplay.style.gridTemplateRows = `repeat(${dimY}, 1fr)`;
+    
     boardDiv.appendChild(element);
 }
+
+
 
 function drawBoard() {
     const boardDiv = document.getElementById('board');

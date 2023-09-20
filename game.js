@@ -9,6 +9,13 @@ function initializeGame() {
     // Initialize the game board to be an array of five arrays.
     // Each of the inner arrays should contain five empty strings.
     // Use the variables dimX and dimY instead of hard coding the number five.
+    for (let i = 0; i < dimX; i++) {
+        let row = []; // create a row
+        board.push(row);
+        for (let j = 0; j < dimY; j++) {
+            row.push(''); // create empty cells
+        }
+    }
 }
 
 function nextTurn() {
